@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>As 7 Maravilhas de Davi Galiano</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #fff4ec;
+  background: #130d12;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+.slide {
+  display: none;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 60px 25px 110px;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background:
+    radial-gradient(circle at 80% 20%,
+      rgba(244,166,184,.2), transparent 30%),
+    linear-gradient(135deg, #160e14, #54283e, #1b1119);
+}
+
+.slide.active {
+  display: flex;
+  animation: aparecer .6s ease;
+}
+
+.conteudo {
+  width: 100%;
+  max-width: 850px;
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  padding-bottom: 18px;
+}
+
+.etiqueta {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #f4a6b8;
+  font: bold 13px Arial, sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: clamp(34px, 7vw, 76px);
+  font-weight: normal;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  font-size: clamp(30px, 5vw, 55px);
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 15px 0;
+  overflow-wrap: anywhere;
+}
+
+.destaque {
+  color: #f4a6b8;
+  font-style: italic;
+}
+
+.numero {
+  color: #f4a6b8;
+  font-size: 35px;
+  font-style: italic;
+}
+
+.traducao {
+  font-family: Arial, sans-serif;
+  font-size: clamp(30px, 5.5vw, 60px);
+  line-height: 1.2;
+  margin: 24px 0;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  font-size: clamp(16px, 2vw, 21px);
+  line-height: 1.8;
+  color: #fff4f8;
+  overflow-wrap: anywhere;
+}
+
+.linha {
+  width: 90px;
+  border: 0;
+  height: 2px;
+  background: #f4a6b8;
+  margin: 30px auto;
+}
+
+.coracao {
+  font-size: 35px;
+  color: #f4a6b8;
+  margin-top: 20px;
+}
+
+/* Imagens das maravilhas */
+.imagem-maravilha {
+  display: block;
+  width: min(100%, 510px);
+  height: clamp(145px, 27vh, 250px);
+  object-fit: cover;
+  margin: 16px auto 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 211, 223, .55);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+}
+
+.controles {
+  position: fixed;
+  z-index: 10;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 16px;
+  border-radius: 50px;
+  background: rgba(20, 10, 17, .95);
+  font-family: Arial, sans-serif;
+}
+
+button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #f4a6b8;
+  color: #24151d;
+  font-size: 25px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+button:hover {
+  background: #ffd3df;
+}
+
+#contador {
+  min-width: 50px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.dica {
+  position: fixed;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font: 12px Arial, sans-serif;
+  color: #ffffff;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ajustes para celulares */
+@media (max-width: 600px) {
+  .slide {
+    height: 100vh;
+    min-height: 100vh;
+    padding: 52px 18px 115px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .conteudo {
+    width: 100%;
+    margin: auto;
+    padding-bottom: 24px;
+  }
+
+  .etiqueta {
+    letter-spacing: 2px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: clamp(32px, 9vw, 48px);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: clamp(28px, 7.5vw, 42px);
+  }
+
+  .numero {
+    font-size: 28px;
+  }
+
+  .traducao {
+    font-size: clamp(28px, 7vw, 42px);
+    margin: 20px 0;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .linha {
+    margin: 20px auto;
+  }
+
+  .imagem-maravilha {
+    width: 100%;
+    height: clamp(140px, 24vh, 190px);
+    margin: 12px auto 16px;
+  }
+
+  .controles {
+    bottom: 12px;
+    gap: 12px;
+    padding: 8px 12px;
+  }
+
+  button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .dica {
+    top: 8px;
+    padding: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide.active {
+    animation: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CAPA -->
+<section class="slide active">
+  <div class="conteudo">
+    <div class="etiqueta">Para a minha maior Maravilha</div>
+    <h1>As 7 Maravilhas<br>de
+      <span class="destaque">Davi Galiano</span>
+    </h1>
+    <hr class="linha">
+    <p>
+      O mundo tem suas maravilhas.
+      Eu tenho as minhas.
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 1 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="numero">01</div>
+    <h2>O sorriso dela</h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=85" alt="Grande Muralha da China" loading="lazy">
+    <div class="traducao" lang="zh">她的笑容</div>
+    <p>Tā de xiàoróng</p>
+    <hr class="linha">
+    <p>
+      Assim como a Grande Muralha da China, o seu sorriso
+      me dá proteção, resistência e perseverança. 
+      É o símbolo da capacidade de que eu, sempre posso superar os desafios mais enormes.
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="etiqueta">Jordânia · Árabe</div>
+    <div class="numero">02</div>
+    <h2>O olhar dela</h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1579606032821-4e6161c81bd3?auto=format&fit=crop&w=1200&q=85" alt="Petra, cidade histórica esculpida na rocha" loading="lazy">
+    <div class="traducao" lang="ar" dir="rtl">نظرتها</div>
+    <p>Naẓratuhā</p>
+    <hr class="linha">
+    <p>
+      Assim como Petra, antiga cidade nabateia, o seu olhar avelã representa
+    tudo aquilo que as palavras não conseguem explicar.
+    A capacidade de transformar algo que parece simples, natural, em algo extraordinário.
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="etiqueta">Brasil · Português</div>
+    <div class="numero">03</div>
+    <h2></h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1200&q=85" alt="Cristo Redentor no Rio de Janeiro" loading="lazy">
+    <div class="traducao">O cabelo dela</div>
+    <hr class="linha">
+    <p>
+    Assim como o Cristo Redentor se destaca na paisagem do Rio de Janeiro, 
+    o cabelo dela tem um encanto que chama a atenção de um jeito único que é só seu.
+    É impossível não reparar nele assim como é impossível não admirar você.
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="etiqueta">Peru · Espanhol</div>
+    <div class="numero">04</div>
+    <h2>O abraço dela</h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=1200&q=85" alt="Machu Picchu, cidade histórica nos Andes" loading="lazy">
+    <div class="traducao" lang="es">Su abrazo</div>
+    <p></p>
+    <hr class="linha">
+    <p>
+      Assim como Machu Picchu, que mostra a grandeza das civilizações antigas e paz interior. 
+      O seu abraço transmite a sensação de encontrar um lugar especial no mundo, o tempo parece parar e você sente que está exatamente onde deveria estar.
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="etiqueta">México · Espanhol</div>
+    <div class="numero">05</div>
+    <h2>O cheiro dela</h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=1200&q=85" alt="Pirâmide maia de Chichén Itzá" loading="lazy">
+    <div class="traducao" lang="es">Su aroma</div>
+    <p></p>
+    <hr class="linha">
+    <p>
+      Assim como Chichén Itzá guarda marcas de uma civilização que atravessou séculos.
+      O cheiro dela também deixa uma marca que permanece na memória mesmo quando ela não está por perto.
+       Basta sentir o amor para que lembranças, saudade e vontade de estar com ela voltem de repente.
+       Seu cheiro é daqueles que ficam na memória para sempre
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="etiqueta">Itália · Italiano</div>
+    <div class="numero">06</div>
+    <h2>O riso dela</h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=85" alt="Coliseu de Roma" loading="lazy">
+    <div class="traducao" lang="it">La sua risata</div>
+    <p></p>
+    <hr class="linha">
+    <p>
+      Assim como Coliseu foi palco de emoções que reuniam multidões. 
+      O riso dela tem um poder parecido, que transforma qualquer ambiente e contagia quem está por perto. 
+      Para você é só uma risada normal, para mim essa risada vale mais do que qualquer espetáculo.
+    </p>
+    <div class="coracao">♡</div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="conteudo">
+    <div class="etiqueta">Índia · Hindi</div>
+    <div class="numero">07</div>
+    <h2>Ela</h2>
+    <img class="imagem-maravilha" src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=85" alt="Taj Mahal na Índia" loading="lazy">
+    <div class="traducao" lang="hi">वह</div>
+    <p>Vah · Ela</p>
+    <hr class="linha">
+    <p>
+      E, por fim, assim como o Taj Mahal, que foi construído como uma homenagem de amor que atravessou gerações. 
+
+      Você, não apenas com o seu sorriso, com o seu olhar ou até com cada detalhe seu, é a minha maior maravilha
+      mas sim por tudo o que você é por completo.
+
+      O mundo tem sete maravilhas, mas para mim,
+      você é a única.
+    </p>
+    <p class="destaque">Eu te amo, Ana Beatriz Barbosa Souza. ❤️</p>
+  </div>
+</section>
+
+<div class="dica">
+  Clica para passar amoiiiiii
+</div>
+
+<nav class="controles">
+  <button id="anterior" aria-label="Slide anterior">‹</button>
+  <span id="contador">1 / 8</span>
+  <button id="proximo" aria-label="Próximo slide">›</button>
+</nav>
+
+<script>
+const slides = document.querySelectorAll(".slide");
+const contador = document.getElementById("contador");
+let atual = 0;
+
+function mostrarSlide(indice) {
+  atual = (indice + slides.length) % slides.length;
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === atual);
+  });
+
+  contador.textContent = `${atual + 1} / ${slides.length}`;
+}
+
+document.getElementById("anterior").addEventListener("click", () => {
+  mostrarSlide(atual - 1);
+});
+
+document.getElementById("proximo").addEventListener("click", () => {
+  mostrarSlide(atual + 1);
+});
+
+document.addEventListener("keydown", (evento) => {
+  if (evento.key === "ArrowRight" || evento.key === " ") {
+    evento.preventDefault();
+    mostrarSlide(atual + 1);
+  }
+
+  if (evento.key === "ArrowLeft") {
+    mostrarSlide(atual - 1);
+  }
+
+  if (evento.key === "Home") {
+    mostrarSlide(0);
+  }
+
+  if (evento.key === "End") {
+    mostrarSlide(slides.length - 1);
+  }
+});
+</script>
+
+</body>
+</html>
